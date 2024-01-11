@@ -39,9 +39,16 @@
   </div>
 </nav>
 
+
+
 <div class="container">
   <div class="row">
     <div class="col-lg-10 mt-5 mb-5">
+      <!-- En tu vista "llibres" -->
+      <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+      </div>
+
       <table id="example" class="table table-bordered" style="width: 100%">
         <thead>
         <tr>
@@ -67,7 +74,7 @@
           <td th:text="${llibre.editorial}">EDITORIAL</td>
           <td th:text="${llibre.autor}">AUTOR</td>
           <td><a th:href="@{/esborrar/{isbn}(isbn=${llibre.Isbn})}"><i class="fa-solid fa-trash"></i></a></td>
-          <td><a th:href="@{/actualitzar/{isbn}(isbn=${llibre.Isbn})}"><i class="fa-solid fa-trash"></i></a></td>
+          <td><a th:href="@{/actualitzar/{isbn}(isbn=${llibre.Isbn})}"><i class="fa-solid fa-pen-to-square"></i></a></td>
 
 
         </tr>
