@@ -2,12 +2,12 @@ package com.example.springbootthymeleafweb.controller;
 
 import com.example.springbootthymeleafweb.model.Llibre;
 import com.example.springbootthymeleafweb.repository.LlibreRepository;
+import jakarta.validation.Valid;
+import org.springframework.data.jpa.datatables.mapping.DataTablesInput;
+import org.springframework.data.jpa.datatables.mapping.DataTablesOutput;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.net.URLEncoder;
@@ -23,6 +23,7 @@ public class LlibreController {
         this.repository = repository;
     }
 
+
     @GetMapping("/llibres")
     public String getLlibres(Model model, @RequestParam(name = "error", required = false) String error) {
         List<Llibre> llibres = repository.findAll();
@@ -32,13 +33,24 @@ public class LlibreController {
 
     }
         @GetMapping("/esborrar/{isbn}")
-    public String esborrarLlibre(@PathVariable("isbn") String isbn, Model model){
+    public String esborrarLlibre(@PathVariable("isbn") String isbn){
         try{
             repository.deleteById(isbn);
         } catch (Exception e) {
-            String error = "No s'ha pogut esborrar el llibre amb isbn: " + isbn;
+            String error = "No s'ha pogut esborrar el llibre amb isbn: " + isbn + " comprova que no estigui en cap prestec";
             return "redirect:/llibres?error=" + URLEncoder.encode(error, StandardCharsets.UTF_8);
         }
+        return "redirect:/llibres";
+    }
+
+    @GetMapping("/afegir")
+    public String afegirLlibre(Model model) {
+        model.addAttribute("llibre", new Llibre());
+        return "afegir";
+    }
+    @PostMapping("/insertar")
+    public String insertarLlibre(@Valid Llibre llibre) {
+        repository.save(llibre);
         return "redirect:/llibres";
     }
 

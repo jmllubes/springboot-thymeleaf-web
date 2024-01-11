@@ -64,6 +64,12 @@
             <version>6.5.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.darrachequesne</groupId>
+            <artifactId>spring-data-jpa-datatables</artifactId>
+            <version>6.0.1</version>
+        </dependency>
+
 
     </dependencies>
 
