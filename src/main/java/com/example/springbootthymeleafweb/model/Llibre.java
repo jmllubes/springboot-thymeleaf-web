@@ -1,5 +1,6 @@
 package com.example.springbootthymeleafweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -25,6 +26,7 @@ public class Llibre {
     @Basic
     @Column(name = "autor")
     private String autor;
+    @JsonIgnore
     @OneToMany(mappedBy = "llibreByIsbn")
     private Collection<Prestec> prestecsByIsbn;
 

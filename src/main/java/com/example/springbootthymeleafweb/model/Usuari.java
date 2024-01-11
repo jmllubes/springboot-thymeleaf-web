@@ -1,5 +1,6 @@
 package com.example.springbootthymeleafweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -19,6 +20,7 @@ public class Usuari {
     @Basic
     @Column(name = "correu")
     private String correu;
+    @JsonIgnore
     @OneToMany(mappedBy = "usuariByDni")
     private Collection<Prestec> prestecsByDni;
 

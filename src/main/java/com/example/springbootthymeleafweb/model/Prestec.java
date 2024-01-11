@@ -1,5 +1,6 @@
 package com.example.springbootthymeleafweb.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -25,9 +26,11 @@ public class Prestec {
     @Basic
     @Column(name = "retornat")
     private Byte retornat;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ISBN", referencedColumnName = "Isbn",insertable = false,updatable = false)
     private Llibre llibreByIsbn;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "DNI", referencedColumnName = "DNI",insertable = false,updatable = false)
     private Usuari usuariByDni;
