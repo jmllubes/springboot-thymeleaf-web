@@ -53,6 +53,13 @@ public class LlibreController {
         repository.save(llibre);
         return "redirect:/llibres";
     }
+    @GetMapping("/editar/{isbn}")
+    public String editarLlibre(@PathVariable("isbn") String isbn, Model model) {
+        Llibre llibre = repository.findById(isbn).orElseThrow(() -> new IllegalArgumentException("Invalid llibre Id:" + isbn));
+        model.addAttribute("llibre", llibre);
+        return "afegir";
+    }
+
 
 
 }

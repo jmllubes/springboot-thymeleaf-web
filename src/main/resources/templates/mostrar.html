@@ -72,7 +72,7 @@
           <td th:text="${llibre.editorial}">EDITORIAL</td>
           <td th:text="${llibre.autor}">AUTOR</td>
           <td><a th:href="@{/esborrar/{isbn}(isbn=${llibre.Isbn})}"><i class="fa-solid fa-trash"></i></a></td>
-          <td><a th:href="@{/actualitzar/{isbn}(isbn=${llibre.Isbn})}"><i class="fa-solid fa-pen-to-square"></i></a></td>
+          <td><a th:href="@{/editar/{isbn}(isbn=${llibre.Isbn})}"><i class="fa-solid fa-pen-to-square"></i></a></td>
 
 
         </tr>
